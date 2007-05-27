@@ -1,6 +1,6 @@
 %define	name	clanlib0.8
 %define	version	0.8.0
-%define release %mkrel 4
+%define release %mkrel 5
 %define	lib_name_orig libclanlib
 %define	lib_major 0.8
 %define	lib_name %mklibname clanlib %{lib_major}
