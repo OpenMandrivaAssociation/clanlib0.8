@@ -14,7 +14,6 @@ License:	LGPL
 Group:		System/Libraries
 Source0:	http://www.clanlib.org/download/files/clanlib-%{version}-svn%{svnrel}.tar.bz2
 URL:		http://www.clanlib.org/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libhermes-devel >= 1.3.0 libmikmod-devel libpng-devel Mesa-common-devel autoconf2.5
 BuildRequires:	libtiff-devel X11-static-devel bzip2-devel oggvorbis-devel DirectFB-devel
 BuildRequires:  libSDL_gfx-devel
