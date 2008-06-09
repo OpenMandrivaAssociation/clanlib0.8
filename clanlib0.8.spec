@@ -214,27 +214,67 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT%{_libdir}/*.la
 ln -s ClanLib-0.7 $RPM_BUILD_ROOT%{_includedir}/ClanLib
 
+%if %mdkversion < 200900
 %post -n %{lib_name} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %post -n %{lib_name}-mikmod -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %post -n %{lib_name}-sound -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %post -n %{lib_name}-vorbis -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %post -n %{lib_name}-network -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %post -n %{lib_name}-gui -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %post -n %{lib_name}-gl -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %post -n %{lib_name}-sdl -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %post -n %{lib_name}-signals -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %post -n %{lib_name}-guistylesilver -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -n %{lib_name} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun	-n %{lib_name}-mikmod -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name}-sound -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name}-vorbis -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name}-network -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name}-gui -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name}-gl -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name}-sdl -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name}-signals -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name}-guistylesilver -p /sbin/ldconfig
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
