@@ -1,7 +1,6 @@
 %define	name	clanlib0.8
-%define	version	0.8.0
-%define svnrel	826
-%define release %mkrel 6.%{svnrel}.1
+%define	version	0.8.1
+%define release %mkrel 1
 %define	lib_name_orig libclanlib
 %define	lib_major 0.8
 %define	lib_name %mklibname clanlib %{lib_major}
@@ -12,7 +11,7 @@ Version:	%{version}
 Release:	%{release}
 License:	LGPL
 Group:		System/Libraries
-Source0:	http://www.clanlib.org/download/files/clanlib-%{version}-svn%{svnrel}.tar.bz2
+Source0:	http://www.clanlib.org/download/releases-%{lib_major}/ClanLib-%version.tgz
 URL:		http://www.clanlib.org/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libhermes-devel >= 1.3.0 libmikmod-devel libpng-devel Mesa-common-devel autoconf2.5
@@ -182,7 +181,7 @@ The ClanLib Game SDK is a crossplatform game library designed to ease the
 work for game developers. This package contains the documentation.
 
 %prep
-%setup -q -n ClanLib-%{lib_major}
+%setup -q -n ClanLib-%{version}
 
 %build
 ./autogen.sh
