@@ -12,6 +12,8 @@ Release:	%{release}
 License:	LGPL
 Group:		System/Libraries
 Source0:	http://www.clanlib.org/download/releases-%{lib_major}/ClanLib-%version.tgz
+Patch0:		clanlib-0.8.1-gcc43.patch
+Patch1:		clanlib-0.8.1-ndebug.patch
 URL:		http://www.clanlib.org/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libhermes-devel >= 1.3.0 libmikmod-devel libpng-devel Mesa-common-devel autoconf2.5
@@ -182,6 +184,8 @@ work for game developers. This package contains the documentation.
 
 %prep
 %setup -q -n ClanLib-%{version}
+%patch0 -p0
+%patch1 -p1
 
 %build
 ./autogen.sh
