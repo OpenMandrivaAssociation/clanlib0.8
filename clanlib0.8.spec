@@ -5,6 +5,8 @@
 %define	lib_major 0.8
 %define	lib_name %mklibname clanlib %{lib_major}
 
+# disable no_undefined, otherwise it fails on linking src
+%define _disable_ld_no_undefined 1
 Name:		%{name}
 Summary:	The ClanLib Game SDK
 Version:	%{version}
