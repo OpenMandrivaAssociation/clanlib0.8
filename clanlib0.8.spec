@@ -11,7 +11,7 @@ Name:		%{name}
 Summary:	The ClanLib Game SDK
 Version:	%{version}
 Release:	%{release}
-License:	LGPL
+License:	BSD-like
 Group:		System/Libraries
 Source0:	http://www.clanlib.org/download/releases-%{lib_major}/ClanLib-%version.tgz
 Patch0:		clanlib-0.8.1-gcc43.patch
