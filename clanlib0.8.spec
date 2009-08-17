@@ -1,6 +1,6 @@
 %define	name	clanlib0.8
 %define	version	0.8.1
-%define release %mkrel 3
+%define release %mkrel 4
 %define	lib_name_orig libclanlib
 %define	lib_major 0.8
 %define	lib_name %mklibname clanlib %{lib_major}
@@ -16,6 +16,7 @@ Group:		System/Libraries
 Source0:	http://www.clanlib.org/download/releases-%{lib_major}/ClanLib-%version.tgz
 Patch0:		clanlib-0.8.1-gcc43.patch
 Patch1:		clanlib-0.8.1-ndebug.patch
+Patch2:		clanlib-0.8.1-gcc44.patch
 URL:		http://www.clanlib.org/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libhermes-devel >= 1.3.0 libmikmod-devel libpng-devel Mesa-common-devel autoconf2.5
@@ -188,6 +189,7 @@ work for game developers. This package contains the documentation.
 %setup -q -n ClanLib-%{version}
 %patch0 -p0
 %patch1 -p1
+%patch2 -p1
 
 %build
 ./autogen.sh
