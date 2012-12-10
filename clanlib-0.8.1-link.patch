@@ -1,0 +1,22 @@
+--- Sources/Display/Makefile.am.link	2011-09-20 21:52:08.966272511 +0800
++++ Sources/Display/Makefile.am	2011-09-20 21:52:19.486329334 +0800
+@@ -3,7 +3,7 @@
+ # FIXME: This needs to be @LIBS@ or @X11LIBS@ or something like that
+ if WIN32
+ else
+-libclanDisplay_la_LIBADD = -L/usr/X11R6/lib/ -lX11 -lXmu -lGL -lGLU -lpng -ljpeg -lXxf86vm @X_LIBS@
++libclanDisplay_la_LIBADD = -L/usr/X11R6/lib/ -lX11 -lGL -lGLU -lpng -ljpeg -lXxf86vm @X_LIBS@
+ endif
+ 
+ libclanDisplay_la_SOURCES = \
+--- Sources/Display/Makefile.in.link	2011-09-20 21:52:27.017892517 +0800
++++ Sources/Display/Makefile.in	2011-09-20 21:52:34.777898246 +0800
+@@ -355,7 +355,7 @@
+ lib_LTLIBRARIES = libclanDisplay.la
+ 
+ # FIXME: This needs to be @LIBS@ or @X11LIBS@ or something like that
+-@WIN32_FALSE@libclanDisplay_la_LIBADD = -L/usr/X11R6/lib/ -lX11 -lXmu -lGL -lGLU -lpng -ljpeg -lXxf86vm @X_LIBS@
++@WIN32_FALSE@libclanDisplay_la_LIBADD = -L/usr/X11R6/lib/ -lX11 -lGL -lGLU -lpng -ljpeg -lXxf86vm @X_LIBS@
+ libclanDisplay_la_SOURCES = display_target.cpp display_precomp.h \
+ 	surface.cpp canvas.cpp canvas_generic.h color.cpp \
+ 	display_iostream.cpp display_mode.cpp display_window.cpp \

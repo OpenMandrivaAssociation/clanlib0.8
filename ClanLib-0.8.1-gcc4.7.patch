@@ -1,0 +1,11 @@
+diff -urN ClanLib-0.8.1/Sources/Core/IOData/Generic/inputsource_file.cpp ClanLib-0.8.1-patched/Sources/Core/IOData/Generic/inputsource_file.cpp
+--- ClanLib-0.8.1/Sources/Core/IOData/Generic/inputsource_file.cpp	2007-10-21 11:14:01.000000000 +1100
++++ ClanLib-0.8.1-patched/Sources/Core/IOData/Generic/inputsource_file.cpp	2012-11-20 23:38:01.880157266 +1100
+@@ -34,6 +34,7 @@
+ #endif
+ #include <cstring>
+ #include <API/Core/IOData/inputsource_file.h>
++#include <unistd.h>
+ 
+ CL_InputSource_File::CL_InputSource_File(const std::string &_filename)
+ {

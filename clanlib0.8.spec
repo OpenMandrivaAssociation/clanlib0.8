@@ -1,31 +1,35 @@
-%define	name	clanlib0.8
-%define	version	0.8.1
-%define release %mkrel 6
-%define	lib_name_orig libclanlib
-%define	lib_major 0.8
-%define	lib_name %mklibname clanlib %{lib_major}
+%define	lib_name_orig	libclanlib
+%define	lib_major	0.8
+%define	lib_name	%mklibname clanlib %{lib_major}
 
-# disable no_undefined, otherwise it fails on linking src
-%define _disable_ld_no_undefined 1
-Name:		%{name}
+Name:		clanlib0.8
 Summary:	The ClanLib Game SDK
-Version:	%{version}
-Release:	%{release}
+Version:	0.8.1
+Release:	7
 License:	BSD-like
 Group:		System/Libraries
+URL:		http://www.clanlib.org/
 Source0:	http://www.clanlib.org/download/releases-%{lib_major}/ClanLib-%version.tgz
 Patch0:		clanlib-0.8.1-gcc43.patch
 Patch1:		clanlib-0.8.1-ndebug.patch
 Patch2:		clanlib-0.8.1-gcc44.patch
-URL:		http://www.clanlib.org/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	libhermes-devel >= 1.3.0 libmikmod-devel libpng-devel Mesa-common-devel autoconf2.5
-BuildRequires:	libtiff-devel X11-static-devel bzip2-devel oggvorbis-devel DirectFB-devel
-BuildRequires:  libSDL_gfx-devel
-BuildRequires:  libxslt-proc
-
-Obsoletes:	ClanLib
-Provides:	ClanLib = %{version}-%{release}
+Patch3:		clanlib-0.8.1-libpng1.5.patch
+Patch4:		clanlib-0.8.1-link.patch
+Patch5:		ClanLib-0.8.1-gcc4.7.patch
+BuildRequires:	pkgconfig(alsa)
+BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(SDL_gfx)
+BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(glu)
+BuildRequires:	pkgconfig(libpng)
+BuildRequires:	pkgconfig(ogg)
+BuildRequires:	pkgconfig(vorbis)
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(xi)
+BuildRequires:	pkgconfig(xxf86vm)
+BuildRequires:	libmikmod-devel
+BuildRequires:	jpeg-devel
+BuildRequires:	libxslt-proc
 
 %description
 The ClanLib Game SDK is a crossplatform game library designed to ease the work
@@ -57,8 +61,7 @@ Requires:	%{lib_name}-sdl = %{version}-%{release}
 Requires:	%{lib_name}-signals = %{version}-%{release}
 Requires:	%{lib_name}-guistylesilver = %{version}-%{release}
 Provides:	%{lib_name_orig}-devel = %{version}-%{release}
-Obsoletes:	ClanLib-devel clanlib-devel
-Provides:	ClanLib-devel = %{version}-%{release} clanlib-devel = %{version}-%{release} %{name}-devel
+Provides:	%{name}-devel
 Conflicts:	clanlib0.6-devel
 
 %description -n	%{lib_name}-devel
@@ -70,8 +73,7 @@ Summary:	Static libraries for %{name}
 Group:		Development/C++
 Requires:	%{lib_name} = %{version}
 Provides:	%{lib_name_orig}-static-devel = %{version}-%{release}
-Obsoletes:	ClanLib-static-devel clanlib-static-devel
-Provides:	ClanLib-static-devel = %{version}-%{release} clanlib-static-devel = %{version}-%{release}
+Provides:	%{name}-static-devel = %{version}-%{release}
 
 %description -n	%{lib_name}-static-devel
 This package contains the static libraries for %{name}.
@@ -80,7 +82,7 @@ This package contains the static libraries for %{name}.
 Summary:	ClanLib Sound module
 Group:		System/Libraries
 Requires:	%{lib_name} = %{version}-%{release}
-Provides:	%{lib_name_orig}-sound
+Provides:	%{lib_name_orig}-sound = %{version}-%{release}
 
 %description -n	%{lib_name}-sound
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -90,7 +92,7 @@ work for game developers. This package is the Sound module (clanSound).
 Summary:	ClanLib Vorbis module
 Group:		System/Libraries
 Requires:	%{lib_name} = %{version}-%{release}
-Provides:	%{lib_name_orig}-vorbis
+Provides:	%{lib_name_orig}-vorbis = %{version}-%{release}
 
 %description -n	%{lib_name}-vorbis
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -100,7 +102,7 @@ work for game developers. This package is the Vorbis module (clanVorbis).
 Summary:	ClanLib Network module
 Group:		System/Libraries
 Requires:	%{lib_name} = %{version}-%{release}
-Provides:	%{lib_name_orig}-network
+Provides:	%{lib_name_orig}-network = %{version}-%{release}
 
 %description -n	%{lib_name}-network
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -110,7 +112,7 @@ work for game developers. This package is the Network module (clanNetwork).
 Summary:	ClanLib Gui module
 Group:		System/Libraries
 Requires:	%{lib_name} = %{version}-%{release}
-Provides:	%{lib_name_orig}-gui
+Provides:	%{lib_name_orig}-gui = %{version}-%{release}
 
 %description -n	%{lib_name}-gui
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -120,7 +122,7 @@ work for game developers. This package is the Gui module (clanGUI).
 Summary:	ClanLib GL module
 Group:		System/Libraries
 Requires:	%{lib_name} = %{version}-%{release}
-Provides:	%{lib_name_orig}-gl
+Provides:	%{lib_name_orig}-gl = %{version}-%{release}
 
 %description -n	%{lib_name}-gl
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -130,9 +132,7 @@ work for game developers. This package is the GL module (clanGL).
 Summary:	ClanLib MikMod module
 Group:		System/Libraries
 Requires:	%{lib_name} = %{version}-%{release}
-Obsoletes:	ClanLib-mikmod clanlib-mikmod
-Provides:	ClanLib-mikmod = %{version}-%{release} clanlib-mikmod = %{version}-%{release}
-Provides:	%{lib_name_orig}-mikmod
+Provides:	%{lib_name_orig}-mikmod = %{version}-%{release}
 
 %description -n	%{lib_name}-mikmod
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -142,9 +142,7 @@ work for game developers. This package is the MikMod module (clanMikMod).
 Summary:	ClanLib SDL module
 Group:		System/Libraries
 Requires:	%{lib_name} = %{version}-%{release}
-Obsoletes:	ClanLib-sdl clanlib-sdl
-Provides:	ClanLib-sdl = %{version}-%{release} clanlib-sdl = %{version}-%{release}
-Provides:	%{lib_name_orig}-sdl
+Provides:	%{lib_name_orig}-sdl = %{version}-%{release}
 
 %description -n	%{lib_name}-sdl
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -154,9 +152,7 @@ work for game developers. This package is the SDL module (clanSDL).
 Summary:	ClanLib Signals module
 Group:		System/Libraries
 Requires:	%{lib_name} = %{version}-%{release}
-Obsoletes:	ClanLib-png clanlib-signals
-Provides:	ClanLib-png = %{version}-%{release} clanlib-signals = %{version}-%{release}
-Provides:	%{lib_name_orig}-signals
+Provides:	%{lib_name_orig}-signals = %{version}-%{release}
 
 %description -n	%{lib_name}-signals
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -166,9 +162,7 @@ work for game developers. This package is the Signals module (clanSignals).
 Summary:	ClanLib GUIStyleSilver module
 Group:		System/Libraries
 Requires:	%{lib_name} = %{version}-%{release}
-Obsoletes:	ClanLib-png clanlib-guistylesilver
-Provides:	ClanLib-png = %{version}-%{release} clanlib-guistylesilver = %{version}-%{release}
-Provides:	%{lib_name_orig}-guistylesilver
+Provides:	%{lib_name_orig}-guistylesilver = %{version}-%{release}
 
 %description -n	%{lib_name}-guistylesilver
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -178,8 +172,6 @@ work for game developers. This package is the GUIStyleSilver module
 %package	docs
 Summary:	ClanLib documentation
 Group:		Books/Computer books
-Obsoletes:	ClanLib-docs clanlib-docs
-Provides:	ClanLib-docs = %{version}-%{release} clanlib-docs = %{version}-%{release}
 
 %description	docs
 The ClanLib Game SDK is a crossplatform game library designed to ease the
@@ -190,9 +182,14 @@ work for game developers. This package contains the documentation.
 %patch0 -p0
 %patch1 -p1
 %patch2 -p1
+%patch3 -p0
+%patch4 -p0
+%patch5 -p1
 
 %build
 ./autogen.sh
+# disable no_undefined, otherwise it fails on linking src
+%define _disable_ld_no_undefined 1
 %configure2_5x	--enable-dyn \
 		--enable-joystick \
 		--disable-lua \
@@ -215,136 +212,54 @@ work for game developers. This package contains the documentation.
 %make all
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%makeinstall BIN_PREFIX=$RPM_BUILD_ROOT%{_bindir} LIB_PREFIX=$RPM_BUILD_ROOT%{_libdir} INC_PREFIX=$RPM_BUILD_ROOT%{_includedir} TARGET_PREFIX=$RPM_BUILD_ROOT%{_libdir}/ClanLib
-#make MAN_PREFIX=$RPM_BUILD_ROOT%{_mandir} HTML_PREFIX=$RPM_BUILD_ROOT%{_datadir}/doc/%{name}-docs-%{version}/Docs docs_install
-rm -rf $RPM_BUILD_ROOT%{_libdir}/*.la
-ln -s ClanLib-0.7 $RPM_BUILD_ROOT%{_includedir}/ClanLib
+%makeinstall BIN_PREFIX=%{buildroot}%{_bindir} LIB_PREFIX=%{buildroot}%{_libdir} INC_PREFIX=%{buildroot}%{_includedir} TARGET_PREFIX=%{buildroot}%{_libdir}/ClanLib
 
-%if %mdkversion < 200900
-%post -n %{lib_name} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%post -n %{lib_name}-mikmod -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%post -n %{lib_name}-sound -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%post -n %{lib_name}-vorbis -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%post -n %{lib_name}-network -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%post -n %{lib_name}-gui -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%post -n %{lib_name}-gl -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%post -n %{lib_name}-sdl -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%post -n %{lib_name}-signals -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%post -n %{lib_name}-guistylesilver -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{lib_name} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun	-n %{lib_name}-mikmod -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name}-sound -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name}-vorbis -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name}-network -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name}-gui -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name}-gl -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name}-sdl -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name}-signals -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name}-guistylesilver -p /sbin/ldconfig
-%endif
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+ln -s ClanLib-0.7 %{buildroot}%{_includedir}/ClanLib
 
 %files -n %{lib_name}
-%defattr(-, root, root)
 %doc README COPYING CREDITS
 %{_libdir}/libclanCore-%{lib_major}.so.*
 %{_libdir}/libclanApp-%{lib_major}.so.*
 %{_libdir}/libclanDisplay-%{lib_major}.so.*
 
 %files -n %{lib_name}-devel
-%defattr(-, root, root)
 %doc README COPYING CODING_STYLE ascii-logo
 %{_libdir}/*.so
 %{_includedir}/ClanLib-%{lib_major}
 %{_includedir}/ClanLib
-#%{_bindir}/clanlib-config
+#{_bindir}/clanlib-config
 %{_libdir}/pkgconfig/*.pc
 
 %files -n %{lib_name}-static-devel
-%defattr(-, root, root)
 %{_libdir}/*.a
 
 %files docs
-%defattr(-, root, root)
 %{_docdir}/clanlib
 
 %files -n %{lib_name}-mikmod
-%defattr(-, root, root)
 %{_libdir}/libclanMikMod-%{lib_major}.so.*
 
 %files -n %{lib_name}-network
-%defattr(-, root, root)
 %{_libdir}/libclanNetwork-%{lib_major}.so.*
 
 %files -n %{lib_name}-vorbis
-%defattr(-, root, root)
 %{_libdir}/libclanVorbis-%{lib_major}.so.*
 
 %files -n %{lib_name}-sound
-%defattr(-, root, root)
 %{_libdir}/libclanSound-%{lib_major}.so.*
 
 %files -n %{lib_name}-gui
-%defattr(-, root, root)
 %{_libdir}/libclanGUI-%{lib_major}.so.*
 
 %files -n %{lib_name}-gl
-%defattr(-, root, root)
 %{_libdir}/libclanGL-%{lib_major}.so.*
 
 %files -n %{lib_name}-sdl
-%defattr(-, root, root)
 %{_libdir}/libclanSDL-%{lib_major}.so.*
 
 %files -n %{lib_name}-signals
-%defattr(-, root, root)
 %{_libdir}/libclanSignals-%{lib_major}.so.*
 
 %files -n %{lib_name}-guistylesilver
-%defattr(-, root, root)
 %{_libdir}/libclanGUIStyleSilver-%{lib_major}.so.*
-
-
 
