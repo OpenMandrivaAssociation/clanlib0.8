@@ -5,7 +5,7 @@
 Name:		clanlib0.8
 Summary:	The ClanLib Game SDK
 Version:	0.8.1
-Release:	7
+Release:	8
 License:	BSD-like
 Group:		System/Libraries
 URL:		http://www.clanlib.org/
