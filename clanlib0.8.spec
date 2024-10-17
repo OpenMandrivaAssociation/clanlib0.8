@@ -8,7 +8,7 @@ Version:	0.8.1
 Release:	8
 License:	BSD-like
 Group:		System/Libraries
-URL:		http://www.clanlib.org/
+URL:		https://www.clanlib.org/
 Source0:	http://www.clanlib.org/download/releases-%{lib_major}/ClanLib-%version.tgz
 Patch0:		clanlib-0.8.1-gcc43.patch
 Patch1:		clanlib-0.8.1-ndebug.patch
